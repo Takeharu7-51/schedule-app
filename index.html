@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>しゃべるスケジュール管理アプリ</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <img src="img/ title.png" alt="タイトル画像" class="titleimage">
+  <p id="today"></p>
+  <p class="nowscheduletext">現在のスケジュール</p>
+  <p id="nowSchedule"></p>
+  <input type="button" onclick="howTouse()" value="How to use？" class="HowToUse-button">
+  <input type="button" onclick="download()" value="今日のスケジュールをダウンロード💻" class="download-button">
+  <input type="button" onclick="speak()" value="SPEAK🗣" class="speak-button">
+  <input type="button" onclick="clearData()" value="CLEAR✂︎" class="clear-button">
+  <table>
+  </table>
+  <script src="index.js"></script>  
+</body>
+</html>
