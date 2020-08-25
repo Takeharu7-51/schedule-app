@@ -143,7 +143,7 @@ function nowSchedule() {
       }
     }
   })
-  // setInterval(nowSchedule, 1000);
+  setInterval(nowSchedule, 1000);
 }
 
 //完了ボタンの処理
