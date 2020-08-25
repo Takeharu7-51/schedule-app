@@ -114,7 +114,7 @@ th {
 }
 
 .conclusionText {
-  font-size: 30px;
+  font-size: 35px;
   font-family: 'arial unicode ms';
 }
 
@@ -172,4 +172,5 @@ textarea {
   transition: .4s;
   outline: none;
 }
+
 
