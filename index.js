@@ -33,12 +33,12 @@ const tableRow = ({time}) =>
   `<tr>
     <th>${time}</th>
     <td><textarea maxlength="200" id="scheduleAt${time}" rows="3" placeholder="${time}のスケジュールを入力してください"></textarea></td>
+    <td class="saveLine">
+      <input type="button" value="SAVE" onclick="save('${time}')" class="save-button">
+    </td>
     <td class="colorLine">
       <p>ChangeColor🎨</p>
       <input type="color" name="font-color" id="colorOf${time}" onclick="changeColor('${time}')" value="#ffffff">
-    </td>
-    <td class="saveLine">
-      <input type="button" value="SAVE" onclick="save('${time}')" class="save-button">
     </td>
     <td class="conclusionLine">
       <p id="doneAt${time}" class="conclusionText"></p>
@@ -143,7 +143,7 @@ function nowSchedule() {
       }
     }
   })
-  setInterval(nowSchedule, 1000);
+  // setInterval(nowSchedule, 1000);
 }
 
 //完了ボタンの処理
@@ -169,7 +169,7 @@ function conclusionSave(time) {
 // HowToUse（マニュアル）の処理
 function howTouse() {
   alert(
-    '１日のスケジュールを30分単位で管理できるアプリです。\n＜ボタンの説明＞\nCLEARボタン:　全てのスケジュールとその設定を削除します\nSPEAKボタン:　コンピュータが時間に応じた言葉をくれます。\n今日のスケジュールをダウンロードボタン:　自分が書いたスケジュールをファイル形式で保存してくれます。オフライン環境でもダウンロードしておくといつでもスケジュールを見ることができます。\nChangeColorボタン:　スケジュールの文字の色を自分好みにカスタマイズできます。変更した色は完全に保存されます。\nSAVEボタン:　書いたスケジュールを保存するボタンです。このボタンを押さないとページを閉じた時にスケジュールの内容も失われます。\n完了・未完了ボタン：　スケジュールを完了したかを設定でき完全に保存されます'
+    '１日のスケジュールを30分単位で管理できるアプリです。\n＜ボタンの説明＞\nCLEARボタン:　全てのスケジュールとその設定を削除します\nSPEAKボタン:　コンピュータが時間に応じた言葉をくれます。\n今日のスケジュールをダウンロードボタン:　自分が書いたスケジュールをファイル形式で保存してくれます。オフライン環境でもダウンロードしておくといつでもスケジュールを見ることができます。\nSAVEボタン:　書いたスケジュールを保存するボタンです。このボタンを押さないとページを閉じた時にスケジュールの内容も失われます。\nChangeColorボタン:　スケジュールの文字の色を自分好みにカスタマイズできます。変更した色は完全に保存されます。\n完了・未完了ボタン：　スケジュールを完了したかを設定でき完全に保存されます'
   );
 }
 
@@ -214,15 +214,15 @@ function speak() {
     var landomMessage = Math.floor(messageinMorning.length*Math.random());
     message.text = messageinMorning[landomMessage];
   } else if (11 <= nowhour && nowhour <= 17) { //昼の場合
-    const messageinNoon = ['こんにちは', '今日の調子はいかがですか？', '無理しすぎず頑張ってください', '昼食はしっかり食べましょうね', '私はお腹が減りました'];
+    const messageinNoon = ['こんにちは', '今日の調子はいかがですか？', '無理しすぎず頑張ってください', '昼食はしっかり食べましょうね', '私はお腹が減りました', '完了したスケジュールは完了ボタンを押しておきましょうね'];
     var landomMessage = Math.floor(messageinNoon.length*Math.random());
     message.text = messageinNoon[landomMessage];
   } else if (18 <= nowhour && nowhour <= 23) { //夜の場合
-    const messageinNight = ['こんばんは', '今日も1日お疲れ様でした', '夜はしっかり休みましょうね', '夜は休んで明日に備えましょう', '私は眠くなってきました', 'おやすみなさい']; 
+    const messageinNight = ['こんばんは', '今日も1日お疲れ様でした', '夜はしっかり休みましょうね', '夜は休んで明日に備えましょう', '私は眠くなってきました', 'おやすみなさい', '明日も頑張ってください']; 
     var landomMessage = Math.floor(messageinNight.length*Math.random());
     message.text = messageinNight[landomMessage];
   } else { //夜中の場合
-    const messageinMidnight = ['こんばんは', '今日は夜ふかしですか', '夜はしっかり寝ましょうね', 'おやすみなさい']; 
+    const messageinMidnight = ['こんばんは', '今日は夜ふかしですか', '夜はしっかり寝ましょうね', 'おやすみなさい', '明日も頑張ってください']; 
     var landomMessage = Math.floor(messageinMidnight.length*Math.random());
     message.text = messageinMidnight[landomMessage];
   }
