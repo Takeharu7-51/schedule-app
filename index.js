@@ -32,7 +32,7 @@ const TIMES = [
 const tableRow = ({time}) =>  
   `<tr>
     <th>${time}</th>
-    <td><textarea maxlength="200" id="scheduleAt${time}" rows="3" placeholder="${time}のスケジュールを入力してください"></textarea></td>
+    <td><textarea maxlength="300" id="scheduleAt${time}" rows="3" placeholder="${time}のスケジュールを入力してください"></textarea></td>
     <td class="saveLine">
       <input type="button" value="SAVE" onclick="save('${time}')" class="save-button">
     </td>
