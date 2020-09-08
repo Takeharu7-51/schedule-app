@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
  * @param {string} time 
  */
 function changeColor(time) {
-  var color = document.getElementById(`colorOf${time}`);
+  let color = document.getElementById(`colorOf${time}`);
   color.addEventListener('change', (event) => {
-    var fontColor = event.target.value;
+    let fontColor = event.target.value;
     document.getElementById(`scheduleAt${time}`).style.color = fontColor;
     //スケジュールの文字の色を保存
     const colorKey = `ColorAt${time}`;
@@ -82,7 +82,7 @@ function save(time) {
   localStorage.setItem(key, value);
 
   //発言の処理
-  var saveSound = new SpeechSynthesisUtterance();
+  let saveSound = new SpeechSynthesisUtterance();
   saveSound.text = 'セーブしました';
   saveSound.lang = 'ja-JP';
   speechSynthesis.speak(saveSound);
@@ -116,16 +116,16 @@ function reload() {
 //現在の日付、時刻の取得、現在のスケジュールの取得
 function nowSchedule() {
   const date = new Date();
-  var hour = date.getHours();
-  var minutes = date.getMinutes();
+  let hour = date.getHours();
+  let minutes = date.getMinutes();
   //現在の時刻を取得して表示
   const today = (date.getMonth() + 1) + "月" + date.getDate() + "日" + hour + "時" + minutes + "分";
   document.getElementById("today").textContent = today; 
   //現在の時刻が30分以上だったら30分に、それ以外（0分以上30分未満）だったら0分にする
   if (30 <= minutes) {
-    var nowTime = `${hour}:30`;
+    let nowTime = `${hour}:30`;
   } else {
-    var nowTime = `${hour}:00`;
+    let nowTime = `${hour}:00`;
   }
 
   TIMES.forEach( function(item){
@@ -176,7 +176,7 @@ function howTouse() {
 //ダウンロード関係の処理
 function download() {
   //音声の処理
-  var downloadSound = new SpeechSynthesisUtterance();
+  let downloadSound = new SpeechSynthesisUtterance();
   downloadSound.text = '今日のスケジュールをダウンロードします';
   downloadSound.lang = 'ja-JP';
   speechSynthesis.speak(downloadSound);
@@ -192,13 +192,13 @@ function download() {
     }
   })
   // arrayのカンマをなくす
-  var arr = array.join("");
+  let arr = array.join("");
   //ダウンロード
   let blob = new Blob([arr],{type:"text/plan"});
   let link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   const date = new Date();
-  var today = `${date.getMonth() + 1}月${date.getDate()}日`;
+  let today = `${date.getMonth() + 1}月${date.getDate()}日`;
   //ファイル名
   link.download = `${today}のスケジュール.txt`;
   link.click();
@@ -207,23 +207,23 @@ function download() {
 //SPEAKボタンの処理
 function speak() {
   const date = new Date();
-  var nowhour = date.getHours();
-  var message = new SpeechSynthesisUtterance();
+  let nowhour = date.getHours();
+  let message = new SpeechSynthesisUtterance();
   if (5 <= nowhour && nowhour <= 10) { //朝の場合
     const messageinMorning = ['おはようございます', '今日も１日頑張ってください', '朝食は食べましたか？', '体調はいかがですか？', 'よく眠れましたか？', 'お目覚めはいかがですか？','朝食は何をお食べになられたのですか？', '私はまだ眠いです'];
-    var landomMessage = Math.floor(messageinMorning.length*Math.random());
+    let landomMessage = Math.floor(messageinMorning.length*Math.random());
     message.text = messageinMorning[landomMessage];
   } else if (11 <= nowhour && nowhour <= 17) { //昼の場合
     const messageinNoon = ['こんにちは', '今日の調子はいかがですか？', '無理しすぎず頑張ってください', '昼食はしっかり食べましょうね', '私はお腹が減りました', '完了したスケジュールは完了ボタンを押しておきましょうね'];
-    var landomMessage = Math.floor(messageinNoon.length*Math.random());
+    let landomMessage = Math.floor(messageinNoon.length*Math.random());
     message.text = messageinNoon[landomMessage];
   } else if (18 <= nowhour && nowhour <= 23) { //夜の場合
     const messageinNight = ['こんばんは', '今日も1日お疲れ様でした', '夜はしっかり休みましょうね', '夜は休んで明日に備えましょう', '私は眠くなってきました', 'おやすみなさい', '明日も頑張ってください']; 
-    var landomMessage = Math.floor(messageinNight.length*Math.random());
+    let landomMessage = Math.floor(messageinNight.length*Math.random());
     message.text = messageinNight[landomMessage];
   } else { //夜中の場合
     const messageinMidnight = ['こんばんは', '今日は夜ふかしですか', '夜はしっかり寝ましょうね', 'おやすみなさい', '明日も頑張ってください']; 
-    var landomMessage = Math.floor(messageinMidnight.length*Math.random());
+    let landomMessage = Math.floor(messageinMidnight.length*Math.random());
     message.text = messageinMidnight[landomMessage];
   }
   message.lang = 'ja-JP';
@@ -233,7 +233,7 @@ function speak() {
 //CLEARボタンの処理
 function clearData() {
   //confirmの結果でデータを削除するかしないかを分岐させる
-  var result = confirm('全てのデータを削除します。よろしいですか？');
+  let result = confirm('全てのデータを削除します。よろしいですか？');
   if (result == true) {
     localStorage.clear();
     reload();
