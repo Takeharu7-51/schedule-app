@@ -184,7 +184,12 @@ function download() {
   // スケジュールをまとめた配列を用意
   const array = [];
   TIMES.forEach( function(item){
-    array.push(`${item.time}   ${localStorage.getItem(`scheduleAt${item.time}`)}\n`);
+    let schedule = localStorage.getItem(`scheduleAt${item.time}`);
+    if (schedule === null) {
+      array.push(`${item.time}   予定なし\n`);
+    } else {
+      array.push(`${item.time}   ${schedule}\n`);
+    }
     for(var i = 0; i < array.length; i++){
       if(array[i] === "4:30"){
           break;
